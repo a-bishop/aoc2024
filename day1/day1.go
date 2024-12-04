@@ -1,26 +1,17 @@
-package main
+package day1
 
 import (
 	"bufio"
-	"fmt"
+	"io"
 	"math"
-	"os"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-func main() {
-	file, err := os.Open("../inputs/day1.txt")
-
-	if err != nil {
-		panic(err)
-	}
-
-	defer file.Close()
-
+func Day1(input io.Reader) (int, int) {
 	var left, right []int
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(input)
 	for scanner.Scan() {
 		spl := strings.Split(scanner.Text(), "   ")
 
@@ -45,11 +36,10 @@ func main() {
 		rCounts[right[idx]] += 1
 	}
 
-	fmt.Printf("Part 1: %v\n", distance)
-
 	simScore := 0
 	for _, num := range left {
 		simScore += num * rCounts[num]
 	}
-	fmt.Printf("Part 2: %v\n", simScore)
+
+	return distance, simScore
 }
