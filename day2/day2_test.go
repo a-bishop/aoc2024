@@ -15,8 +15,9 @@ var sampleInput = strings.NewReader(
 8 6 4 4 1
 1 3 6 7 9`)
 
-func TestDay2(t *testing.T) {
-	part1, _ := Day2(sampleInput)
+func TestRedNosedReports(t *testing.T) {
+	part1, part2 := RedNosedReports(sampleInput)
 
 	assert.Equal(t, 2, part1)
+	assert.Equal(t, 4, part2)
 }

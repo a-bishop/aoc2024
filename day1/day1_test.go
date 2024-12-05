@@ -15,8 +15,8 @@ var sampleInput = strings.NewReader(
 3   9
 3   3`)
 
-func TestDay1(t *testing.T) {
-	part1, part2 := Day1(sampleInput)
+func TestHistorianHysteria(t *testing.T) {
+	part1, part2 := HistorianHysteria(sampleInput)
 
 	assert.Equal(t, 11, part1)
 	assert.Equal(t, 31, part2)

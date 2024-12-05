@@ -3,43 +3,61 @@ package day1
 import (
 	"bufio"
 	"io"
-	"math"
 	"slices"
-	"strconv"
 	"strings"
+
+	"github.com/a-bishop/aoc2024/utils"
 )
 
-func Day1(input io.Reader) (int, int) {
-	var left, right []int
+func getSortedLocationLists(input io.Reader) ([]int, []int) {
+	var leftList, rightList []int
 	scanner := bufio.NewScanner(input)
 	for scanner.Scan() {
-		spl := strings.Split(scanner.Text(), "   ")
+		spl := strings.Fields(scanner.Text())
 
-		num1, _ := strconv.Atoi(spl[0])
-		num2, _ := strconv.Atoi(spl[1])
+		num1 := utils.MustAtoi(spl[0])
+		num2 := utils.MustAtoi(spl[1])
 
-		left = append(left, num1)
-		right = append(right, num2)
+		leftList = append(leftList, num1)
+		rightList = append(rightList, num2)
 	}
 
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
 
-	slices.Sort(left)
-	slices.Sort(right)
+	slices.Sort(leftList)
+	slices.Sort(rightList)
 
+	return leftList, rightList
+}
+
+func getDistanceAndRightListTally(leftList, rightList []int) (int, map[int]int) {
 	distance := 0
-	var rCounts = map[int]int{}
-	for idx := range left {
-		distance += int(math.Abs(float64(right[idx] - left[idx])))
-		rCounts[right[idx]] += 1
+	var rightListTally = map[int]int{}
+	for idx := range leftList {
+		distance += utils.AbsDiff(leftList[idx], rightList[idx])
+		rightListTally[rightList[idx]] += 1
 	}
 
+	return distance, rightListTally
+}
+
+func getSimScore(leftList []int, rightListTally map[int]int) int {
 	simScore := 0
-	for _, num := range left {
-		simScore += num * rCounts[num]
+	for _, num := range leftList {
+		simScore += num * rightListTally[num]
 	}
+
+	return simScore
+}
+
+func HistorianHysteria(input io.Reader) (part1 int, part2 int) {
+	leftList, rightList := getSortedLocationLists(input)
+
+	distance, rightListTally := getDistanceAndRightListTally(leftList, rightList)
+
+	simScore := getSimScore(leftList, rightListTally)
 
 	return distance, simScore
 }
