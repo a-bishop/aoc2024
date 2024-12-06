@@ -4,8 +4,19 @@ import (
 	"bufio"
 	"io"
 	"math"
+	"os"
 	"strconv"
 )
+
+func GetFile(filePath string) *os.File {
+	file, err := os.Open(filePath)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return file
+}
 
 func GetLines(input io.Reader) []string {
 	scanner := bufio.NewScanner(input)
