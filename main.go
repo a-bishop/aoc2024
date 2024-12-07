@@ -7,6 +7,7 @@ import (
 
 	"github.com/a-bishop/aoc2024/day1"
 	"github.com/a-bishop/aoc2024/day2"
+	"github.com/a-bishop/aoc2024/day3"
 	"github.com/a-bishop/aoc2024/utils"
 )
 
@@ -22,5 +23,8 @@ func main() {
 	fmt.Println()
 
 	runDay(2, utils.GetFile("inputs/day2.txt"), day2.RedNosedReports)
+	fmt.Println()
+
+	runDay(3, utils.GetFile("inputs/day3.txt"), day3.MullItOver)
 	fmt.Println()
 }

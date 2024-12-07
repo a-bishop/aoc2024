@@ -40,12 +40,6 @@ func checkDiffs(levels []int) bool {
 	return true
 }
 
-func removeAtIndex(s []int, index int) []int {
-	ns := make([]int, 0, len(s))
-	ns = append(ns, s[:index]...)
-	return append(ns, s[index+1:]...)
-}
-
 func isReportSafe(levels []int, allowSkipOne bool) bool {
 	if len(levels) < 2 {
 		return true
@@ -55,7 +49,7 @@ func isReportSafe(levels []int, allowSkipOne bool) bool {
 		deleteIdx := 0
 		for !isSafe && deleteIdx < len(levels) {
 			// Successively remove the next element from the slice until safe or options exhausted
-			isSafe = checkDiffs(removeAtIndex(levels, deleteIdx))
+			isSafe = checkDiffs(utils.RemoveAtIndex(levels, deleteIdx))
 			deleteIdx += 1
 		}
 	}

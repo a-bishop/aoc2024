@@ -40,3 +40,9 @@ func MustAtoi(s string) int {
 	}
 	return num
 }
+
+func RemoveAtIndex[T any](s []T, index int) []T {
+	ns := make([]T, 0, len(s))
+	ns = append(ns, s[:index]...)
+	return append(ns, s[index+1:]...)
+}
