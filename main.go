@@ -8,6 +8,7 @@ import (
 	"github.com/a-bishop/aoc2024/day1"
 	"github.com/a-bishop/aoc2024/day2"
 	"github.com/a-bishop/aoc2024/day3"
+	"github.com/a-bishop/aoc2024/day4"
 	"github.com/a-bishop/aoc2024/utils"
 )
 
@@ -26,5 +27,8 @@ func main() {
 	fmt.Println()
 
 	runDay(3, utils.GetFile("inputs/day3.txt"), day3.MullItOver)
+	fmt.Println()
+
+	runDay(4, utils.GetFile("inputs/day4.txt"), day4.CeresSearch)
 	fmt.Println()
 }

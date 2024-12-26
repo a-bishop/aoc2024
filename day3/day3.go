@@ -14,22 +14,22 @@ func MullItOver(input io.Reader) (part1 int, part2 int) {
 	re := regexp.MustCompile(`don\'t\(\)|do\(\)|mul\((\d+),(\d+)\)`)
 
 	total := 0
-	totalEnabled := 0
-	enabled := true
-	matches := re.FindAllStringSubmatch(corruptedMem, -1)
-	for _, match := range matches {
+	totalWhileEnabled := 0
+
+	isEnabled := true
+	for _, match := range re.FindAllStringSubmatch(corruptedMem, -1) {
 		if match[0] == "don't()" {
-			enabled = false
+			isEnabled = false
 		} else if match[0] == "do()" {
-			enabled = true
+			isEnabled = true
 		} else {
 			sum := utils.MustAtoi(match[1]) * utils.MustAtoi(match[2])
 			total += sum
-			if enabled {
-				totalEnabled += sum
+			if isEnabled {
+				totalWhileEnabled += sum
 			}
 		}
 	}
 
-	return total, totalEnabled
+	return total, totalWhileEnabled
 }
