@@ -9,6 +9,7 @@ import (
 	"github.com/a-bishop/aoc2024/day2"
 	"github.com/a-bishop/aoc2024/day3"
 	"github.com/a-bishop/aoc2024/day4"
+	"github.com/a-bishop/aoc2024/day5"
 	"github.com/a-bishop/aoc2024/utils"
 )
 
@@ -30,5 +31,8 @@ func main() {
 	fmt.Println()
 
 	runDay(4, utils.GetFile("inputs/day4.txt"), day4.CeresSearch)
+	fmt.Println()
+
+	runDay(5, utils.GetFile("inputs/day5.txt"), day5.PrintQueue)
 	fmt.Println()
 }

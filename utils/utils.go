@@ -29,6 +29,27 @@ func GetLines(input io.Reader) []string {
 	return lines
 }
 
+func GetLinesWithSplit(input io.Reader, splitOn string) ([]string, []string) {
+	scanner := bufio.NewScanner(input)
+
+	lines1 := []string{}
+	lines2 := []string{}
+	hasSplit := false
+
+	for scanner.Scan() {
+		txt := scanner.Text()
+		if txt == splitOn {
+			hasSplit = true
+		} else if hasSplit {
+			lines2 = append(lines2, txt)
+		} else {
+			lines1 = append(lines1, txt)
+		}
+	}
+
+	return lines1, lines2
+}
+
 func AbsDiff(num1, num2 int) int {
 	return int(math.Abs(float64(num1 - num2)))
 }
